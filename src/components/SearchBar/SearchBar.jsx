@@ -1,17 +1,19 @@
 import { useState } from "react";
 import toast from 'react-hot-toast';
 import css from "../SearchBar/SearchBar.module.css"
+import { useSearchParams} from "react-router-dom";
 
 
-const SearchBar = ({ onSubmit }) => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [, setSearchParams] = useSearchParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm.trim() === '') {
       toast.error('Please enter a search term');
     } else {
-      onSubmit(searchTerm);
+      setSearchParams({query: searchTerm});
     }
   };
 
