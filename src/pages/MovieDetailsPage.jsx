@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {Link, useLocation, useParams} from "react-router-dom";
 import { getMovieDetails } from "../api.js";
 import {IMAGE_BASE_URL} from "../constants/index.js";
@@ -18,6 +18,7 @@ const MovieDetailsPage = () => {
   const isShowingReviews = location.pathname.endsWith("/reviews");
   const voteAverage  = Math.round(movieDetails?.vote_average) * 10;
   const releaseDate = (movieDetails?.release_date.split('-')[0] || movieDetails?.release_date.split('_')[0]);
+  const backLinkRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     setLoading(true);
@@ -28,7 +29,7 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <BackButton />
+      <BackButton backLinkRef={backLinkRef} />
       {loading && <Loader />}
       {movieDetails && (
         <>

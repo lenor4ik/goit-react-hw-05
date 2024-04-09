@@ -1,4 +1,5 @@
 import {NavLink, useLocation} from "react-router-dom";
+import {memo} from "react";
 
 const MovieList = ({movies}) => {
   const location = useLocation();
@@ -11,4 +12,4 @@ const MovieList = ({movies}) => {
   )
 }
 
-export default MovieList;
+export default memo(MovieList);

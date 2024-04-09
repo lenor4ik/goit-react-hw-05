@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {memo, useState} from 'react';
 
 function Pagination({ totalItems, itemsPerPage = 20, onPageChange }) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -103,4 +103,4 @@ function Pagination({ totalItems, itemsPerPage = 20, onPageChange }) {
   );
 }
 
-export default Pagination;
+export default memo(Pagination);
